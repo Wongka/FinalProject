@@ -42,10 +42,6 @@ interface Point{
 let drawPointWithInterface = (point:Point)=>{
     //do something here
 }
-drawPointWithInterface({
-    x: 1,
-    y: 2
-})
     
     
     
