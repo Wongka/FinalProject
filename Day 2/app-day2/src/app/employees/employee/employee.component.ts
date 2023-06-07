@@ -6,6 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent implements OnInit {
+  employee={
+    name:"Jhonny",
+    age:35,
+    gender:"Male"
+  }
+  angularlogo="https://angular.io/assets/images/logos/angular/angular.png"
+  btnTxt = "Vote";
+  handleClick(e:Event){
+    console.log(e);
+  }
 
   constructor() { }
 

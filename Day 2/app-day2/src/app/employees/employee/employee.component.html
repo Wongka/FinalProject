@@ -1,1 +1,11 @@
-<p>employee works!</p>
+<div>
+    <img src="{{angularlogo}}">
+    <img [src]=angularlogo>
+    <img bind-src="angularlogo">
+    <div>
+        Name: {{employee.name}}
+        Age: {{employee.age}}
+        Gender: {{employee.gender}}
+    </div>
+    <button (click)="handleClick($event)">{{btnTxt}}</button>
+</div>
