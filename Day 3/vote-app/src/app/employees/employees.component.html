@@ -1,0 +1,26 @@
+<h3>Vote Employee of the month</h3>
+<div>
+    <p>My vote:{{getMyVote()}}</p>
+</div>
+<div class="employee-list">
+    <app-employee
+    [employee]=employees[0]
+    (vote)="voteEmployee($event)"
+    (unVote)="unVoteEmployee($event)"
+    ></app-employee>
+    <app-employee
+    [employee]=employees[1]
+    (vote)="voteEmployee($event)"
+    (unVote)="unVoteEmployee($event)"
+    ></app-employee>
+    <app-employee
+    [employee]=employees[2]
+    (vote)="voteEmployee($event)"
+    (unVote)="unVoteEmployee($event)"
+    ></app-employee>
+    <app-employee
+    [employee]=employees[3]
+    (vote)="voteEmployee($event)"
+    (unVote)="unVoteEmployee($event)"
+    ></app-employee>
+</div>
