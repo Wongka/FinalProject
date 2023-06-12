@@ -14,7 +14,7 @@ const BeritaRoute = [
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
     RouterModule.forChild(BeritaRoute)
   ]
 })
