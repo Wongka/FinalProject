@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UsersApiService } from './users-api.service';
 
 @Component({
   selector: 'app-users',
@@ -9,7 +10,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class UsersComponent implements OnInit {
   username:string= '';
   constructor(
-    private route:ActivatedRoute
+    private route: ActivatedRoute, 
+    private userApi: UsersApiService, 
+    private router:Router
   ) { }
 
   ngOnInit() {
@@ -29,5 +32,18 @@ export class UsersComponent implements OnInit {
       console.log(params);
     })
   }
+    //test post data user
+    buatUser(){
+      // let data = {
+      //   name: 'Fulan',
+      //   username: 'fulan',
+      //   email: 'email@mail.com'
+      // };
+      // this.userApi.createUser(data).subscribe(data=>{
+      //   console.log(data);
+      // });
+      this.router.navigate(['users','create']);
+    }
+  
 
 }
