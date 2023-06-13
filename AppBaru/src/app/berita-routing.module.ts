@@ -1,21 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { ListBeritaComponent } from './berita/list-berita/list-berita.component';
 import { DetailBeritaComponent } from './berita/detail-berita/detail-berita.component';
 import { FormBeritaComponent } from './berita/form-berita/form-berita.component';
+import { ListBeritaComponent } from './berita/list-berita/list-berita.component';
+import { RouterModule } from '@angular/router';
 
-const BeritaRoute = [
-  {path:'',component:ListBeritaComponent},
-  {path:':id',component:DetailBeritaComponent},
-  {path:':id/edit',component:FormBeritaComponent},
+const beritaRoute = [
+  { path: 'berita', component: ListBeritaComponent },
+  { path: 'berita/:id', component: DetailBeritaComponent },
+  { path: 'berita/:id/edit', component: FormBeritaComponent },
 ];
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forChild(BeritaRoute)
-  ]
+    RouterModule.forChild(beritaRoute)
+  ],
+  exports: [RouterModule]
 })
 export class BeritaRoutingModule { }
