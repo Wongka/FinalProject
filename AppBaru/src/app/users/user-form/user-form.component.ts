@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersApiService } from '../users-api.service';
+import { ActivatedRoute, Params } from '@angular/router';
+import { UsersService } from '../users.service';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-form',
@@ -7,9 +11,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserFormComponent implements OnInit {
 
-  constructor() { }
+  user: { name: string, phone: string, email: string, id: number } = { id: 0, name: '', phone: '', email: '' };
+  isEdit = false;
+  constructor(private userApi: UsersApiService, private route: ActivatedRoute, private userService: UsersService) { }
+  ngOnInit(): void {
+    this.route.params.pipe(
+      switchMap((params: Params) => {
+        let id = params['id'];
+        if (id) {
+          this.isEdit = true;
+          return this.userApi.getUserById(parseInt(id));
+        }
+        return [];
+      }
+      )
+    ).subscribe(
+      userdariAPI => {
+        this.user = userdariAPI;
+      }
+    );
 
-  ngOnInit() {
+  }
+  saveUser() {
+    this.userService.addUser({
+      id: this.user.id,
+      nama: this.user.name,
+      alamat: this.user.email
+    });
+  }
+
+  updateUser() {
+    this.userApi.updateUser(this.user.id, this.user).subscribe(
+      (response: any) => {
+        console.log(response);
+      }
+    );
   }
 
 }

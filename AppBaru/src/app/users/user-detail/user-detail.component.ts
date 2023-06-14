@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UsersService } from '../users.service';
+import { UsersApiService } from '../users-api.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -9,27 +11,25 @@ import { ActivatedRoute } from '@angular/router';
 export class UserDetailComponent implements OnInit {
 
   idUser: string | null = '';
-  dataUser = [
-    {id: 1, nama: 'Rizki', alamat: 'Jl. Raya Bogor'},
-    {id: 2, nama: 'Rizka', alamat: 'Jl. Raya Bogor'},
-    {id: 3, nama: 'Rizku', alamat: 'Jl. Raya Bogor'},
-  ];
-  constructor(private router:ActivatedRoute ) { }
+  detailUser: any;
+  constructor(private router: ActivatedRoute, private serviceUser: UsersService, private userApi: UsersApiService) { }
 
   ngOnInit(): void {
-    this.router.paramMap.subscribe(parameter=>{
+    this.router.paramMap.subscribe(parameter => {
       let id = parameter.get('id');
       console.log(id);
       this.idUser = id;
+      this.getDetailUser();
     });
-    console.log('Di dalam on init....');
-    // console.log(this.router.snapshot.paramMap.get('id'));
-    // this.idUser = this.router.snapshot.paramMap.get('id');
   }
-  getDetailUser(){
+  getDetailUser() {
     let idDicari = parseInt(this.idUser || '');
-    let data = this.dataUser.filter(user=>user.id == idDicari);
-    return data[0].nama;
+    let data = this.serviceUser.getUserById(idDicari);
+    if (!data) {
+      this.detailUser = 'User tidak ditemukan';
+    } else {
+      this.detailUser = data.nama;
+    }
   }
 
 

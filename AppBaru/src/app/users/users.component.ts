@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsersApiService } from './users-api.service';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-users',
@@ -8,42 +9,38 @@ import { UsersApiService } from './users-api.service';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  username:string= '';
-  constructor(
-    private route: ActivatedRoute, 
-    private userApi: UsersApiService, 
-    private router:Router
-  ) { }
+  username: string | null = '';
+  constructor(private route: ActivatedRoute, private userApi: UsersApiService, private router: Router) { }
 
-  ngOnInit() {
-    // this.username = this.route.snapshot.paramMap.get('username')
-    this.route.paramMap.subscribe(param =>{
-      this.username = param.get('username');
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(parameter => {
+      this.username = parameter.get('username');
     });
-    //membaca parameter dari url
-    this.route.queryParamMap.subscribe(params =>{
-      console.log(params.get("cari"));
-    })
-    this.route.queryParams.subscribe(params =>{
-      console.log(params);
-    })
-    //fragment
-    this.route.fragment.subscribe(params=>{
-      console.log(params);
-    })
+    this.route.queryParams.subscribe(parameter => {
+      console.log(parameter);
+    });
+    this.route.fragment.subscribe(parameter => {
+      console.log(parameter);
+    });
   }
-    //test post data user
-    buatUser(){
-      // let data = {
-      //   name: 'Fulan',
-      //   username: 'fulan',
-      //   email: 'email@mail.com'
-      // };
-      // this.userApi.createUser(data).subscribe(data=>{
-      //   console.log(data);
-      // });
-      this.router.navigate(['users','create']);
-    }
-  
+
+  buatUser() {
+    this.router.navigate(['users', 'create']);
+  }
+
+  testObservable() {
+    const myObservable = of('satu', 'dua', 'tiga');
+
+    myObservable.subscribe(data => {
+      console.log(data);
+    });
+
+    myObservable.subscribe({
+      next: data => { console.log(data) },
+      error: err => { console.log(err) },
+      complete: () => { console.log('complete') }
+    });
+  }
+
 
 }
