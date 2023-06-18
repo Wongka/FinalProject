@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -57,7 +58,15 @@
                   "maximumError": "10kb"
                 }
               ]
-            }
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+          }
           }
         },
         "serve": {
@@ -67,9 +76,13 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "AppBaru:build:production"
+                "browserTarget": "AppBaru:build:production"
+            },
+            "development": {
+                "browserTarget": "AppBaru:build:development"
             }
-          }
+        },
+        "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
