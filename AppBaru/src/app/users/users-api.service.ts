@@ -30,5 +30,9 @@ export class UsersApiService {
   deleteUser(id: number) {
     return this.http.delete<any>(`https://jsonplaceholder.typicode.com/users/${id}`);
   }
+  //search user
+  searchUser(keyword:string){
+    return this.http.get<any[]>(`https://jsonplaceholder.typicode.com/users?q=${keyword}`);
+  }
 
 }

@@ -7,9 +7,10 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UsersComponent } from './users.component';
 import {HttpClientModule} from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersService } from './users.service';
 import { CekLevelGuard } from './cek-level';
+import { NgbAlertModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -22,8 +23,11 @@ import { CekLevelGuard } from './cek-level';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
-    UsersRoutingModule
+    UsersRoutingModule,
+    NgbAlertModule,
+    NgbPaginationModule
   ],
   providers:[UsersService,CekLevelGuard]
 })

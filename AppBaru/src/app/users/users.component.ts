@@ -9,12 +9,14 @@ import { of } from 'rxjs';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+  toastMessage: string = '';
   username: string | null = '';
   constructor(private route: ActivatedRoute, private userApi: UsersApiService, private router: Router) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(parameter => {
       this.username = parameter.get('username');
+      this.toastMessage = parameter.get('pesan') || '';
     });
     this.route.queryParams.subscribe(parameter => {
       console.log(parameter);

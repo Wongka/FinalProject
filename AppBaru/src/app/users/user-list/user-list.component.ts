@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User, UsersService } from '../users.service';
 import { UsersApiService } from '../users-api.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-user-list',
@@ -10,11 +11,21 @@ import { UsersApiService } from '../users-api.service';
 })
 export class UserListComponent implements OnInit {
   dataUser:Observable<User[]> | undefined;
-  constructor(private serviceUser: UsersService, private userApi: UsersApiService) { }
+  page = 1;
+  pageSize = 5;
+  constructor(private serviceUser: UsersService, private userApi: UsersApiService) {  }
 
   ngOnInit(): void {
     this.dataUser = this.userApi.getAllUser();
   }
+
+  search(text:string){
+    return this.userApi.searchUser(text);
+  }
+  onSort(e: any){
+    console.log(e);
+  }
+
 
   deleteUser(id:number){
     this.userApi.deleteUser(id).subscribe(response=>{

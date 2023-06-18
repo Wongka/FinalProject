@@ -8,7 +8,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BeritaModule } from './berita/berita.module';
 import { UsersModule } from './users/users.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -22,6 +22,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UsersModule,
     AppRoutingModule,
     NgbModule,
+    NgbAlertModule
   ],
   providers: [],
   bootstrap: [AppComponent]

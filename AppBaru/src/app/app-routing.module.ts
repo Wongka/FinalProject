@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { NewsComponent } from './news/news.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { BeritaComponent } from './berita/berita/berita.component';
 
 
 const KonfigurasiRoute = [
@@ -20,3 +18,5 @@ const KonfigurasiRoute = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+
