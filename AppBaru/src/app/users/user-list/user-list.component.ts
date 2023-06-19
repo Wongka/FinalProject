@@ -13,7 +13,12 @@ export class UserListComponent implements OnInit {
   dataUser:Observable<User[]> | undefined;
   page = 1;
   pageSize = 5;
-  constructor(private serviceUser: UsersService, private userApi: UsersApiService) {  }
+  searchText = new FormControl('');
+  constructor(private serviceUser: UsersService, private userApi: UsersApiService) { 
+    this.searchText.valueChanges.subscribe(value=>{
+      this.dataUser = this.search(value || '');
+    });
+   }
 
   ngOnInit(): void {
     this.dataUser = this.userApi.getAllUser();

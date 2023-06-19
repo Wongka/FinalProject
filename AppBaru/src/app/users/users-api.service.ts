@@ -34,5 +34,6 @@ export class UsersApiService {
   searchUser(keyword:string){
     return this.http.get<any[]>(`https://jsonplaceholder.typicode.com/users?q=${keyword}`);
   }
+  
 
 }

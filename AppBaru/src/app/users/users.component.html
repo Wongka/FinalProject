@@ -1,8 +1,9 @@
-<p>
-	<ngb-alert [dismissible]="false">
-		<strong>Warning!</strong> Better check yourself, you're not looking too good.
-	</ngb-alert>
-</p>
-<!-- <button (click)="testObservable()">Tes Observable</button>
-<button (click)="buatUser()">Buat User</button> -->
+<ngb-toast 
+	*ngIf="toastMessage!=''" 
+	[autohide]="true"
+	[delay]="3000" 
+	(hidden)="toastMessage=''"> 
+		{{toastMessage}} 
+	</ngb-toast>
+
 <router-outlet></router-outlet>

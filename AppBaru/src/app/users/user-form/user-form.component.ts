@@ -12,7 +12,7 @@ import { switchMap } from 'rxjs/operators';
 export class UserFormComponent implements OnInit {
   user: { name: string, phone: string, email: string, id: number } = { id: 0, name: '', phone: '', email: '' };
   isEdit = false;
-  
+  isSubmitting = false;
   constructor(private userApi: UsersApiService, private route: ActivatedRoute, private userService: UsersService,private router: Router) { }
 
   ngOnInit(): void {
@@ -35,24 +35,26 @@ export class UserFormComponent implements OnInit {
   }
 
   saveUser() {
+    this.isSubmitting = true;
     this.userService.addUser({
       id: this.user.id,
       nama: this.user.name,
       alamat: this.user.email
     });
-    this.kembaliKeListUser();
+    this.kembaliKeListUser('Menambahkan User Berhasil');
   }
 
   updateUser() {
     this.userApi.updateUser(this.user.id, this.user).subscribe(
       (response: any) => {
         this.kembaliKeListUser();
+        this.kembaliKeListUser('Update User '+this.user.name+' berhasil');
       }
     );
   }
   
-  kembaliKeListUser() {
-    this.router.navigate(['/users']);
+  kembaliKeListUser(message:string = '') {
+    this.router.navigate(['/users',{pesan:message}]);
   }
 
 
